@@ -46,6 +46,11 @@
 
 <nav>
   <div class="nav-id">Jaronimas Snipas | <a href="https://github.com/jaronimas-codes">GitHub</a> | <a href="https://www.linkedin.com/in/jaronimas-snipas/">LinkedIn</a> | <a href="mailto:jaronimas.snipas@outlook.com">Email</a></div>
+  <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
@@ -324,6 +329,23 @@ const obs=new IntersectionObserver(entries=>{
   })
 },{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>{obs.observe(el)});
+
+// Hamburger menu toggle
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navLinks.classList.toggle('active');
+  hamburger.setAttribute('aria-expanded', hamburger.classList.contains('active'));
+});
+// Close menu when a link is clicked
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    navLinks.classList.remove('active');
+    hamburger.setAttribute('aria-expanded', false);
+  });
+});
 </script>
 </body>
 </html>
